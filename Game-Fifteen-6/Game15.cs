@@ -1,58 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Wintellect.PowerCollections;
-
-namespace Game15
+﻿namespace Game15
 {
-    class Game15
-    {
-        static int[,] pole = new int[4, 4];
-        static OrderedMultiDictionary<int, string> najDobrite = new OrderedMultiDictionary<int, string>(true);
-        static Dictionary<int, Coordinates> numberPositions = new Dictionary<int, Coordinates>();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Wintellect.PowerCollections;
 
-        static void Main()
+    public class Game15
+    {
+        private static int[,] field = new int[4, 4];
+        private static OrderedMultiDictionary<int, string> bestResults = new OrderedMultiDictionary<int, string>(true);
+        private static Dictionary<int, Coordinates> numberPositions = new Dictionary<int, Coordinates>();
+
+        public static void Main()
         {
-            Nachalo();
-            Zapochni();
+            Initialize();
+            StartGame();
         }
 
-        private static void Nachalo()
+        private static void Initialize()
         {
             do
             {
-                IskamProizvolnaDyska();
-            } while (proverkaGameFieldIsSolved());
+                RandomGameField();
+            }
+            while (IsGameFieldSolved());
+
             Console.WriteLine("Welcome to the game “15”. Please try to arrange the numbers sequentially." +
                 "Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
         }
 
-        private static void IskamProizvolnaDyska()
+        private static void RandomGameField()
         {
             List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
             numberPositions.Clear();
             Random rand = new Random();
-            for (int i = 0; i < pole.GetLength(0); i++)
+            for (int i = 0; i < field.GetLength(0); i++)
             {
-                for (int j = 0; j < pole.GetLength(1); j++)
+                for (int j = 0; j < field.GetLength(1); j++)
                 {
                     int position = rand.Next(0, numbers.Count);
-                    pole[i, j] = numbers[position];
+                    field[i, j] = numbers[position];
                     numberPositions.Add(numbers[position], new Coordinates(i, j));
                     numbers.RemoveAt(position);
                 }
             }
         }
 
-        private static void Zapochni()
+        private static void StartGame()
         {
             PrintGameField();
             Console.Write("Enter a number to move: ");
             string input = Console.ReadLine();
             bool gameIsFinished = false;
             int moves = 0;
-            while (input!="exit")
+            while (input != "exit")
             {
                 moves++;
                 switch (input)
@@ -61,7 +62,7 @@ namespace Game15
                         PrintBestOfTheBest();
                         break;
                     case "restart":
-                        Nachalo();
+                        Initialize();
                         break;
                     default:
                         int numberToMove;
@@ -80,16 +81,19 @@ namespace Game15
                         {
                             Console.WriteLine("Illegal command!");
                         }
+
                         break;
                 }
+
                 PrintGameField();
-                gameIsFinished = proverkaGameFieldIsSolved();
+                gameIsFinished = IsGameFieldSolved();
                 if (gameIsFinished)
                 {
                     AddToScoreBoard(moves);
                     moves = 0;
-                    Nachalo();
+                    Initialize();
                 }
+
                 Console.Write("Enter a number to move: ");
                 input = Console.ReadLine();
             }
@@ -102,8 +106,8 @@ namespace Game15
                 Coordinates temp = numberPositions[0];
                 numberPositions[0] = numberPositions[numberToMove];
                 numberPositions[numberToMove] = temp;
-                pole[numberPositions[numberToMove].Row, numberPositions[numberToMove].Col] = numberToMove;
-                pole[numberPositions[0].Row, numberPositions[0].Col] = 0;
+                field[numberPositions[numberToMove].Row, numberPositions[numberToMove].Col] = numberToMove;
+                field[numberPositions[0].Row, numberPositions[0].Col] = 0;
             }
             else
             {
@@ -116,41 +120,41 @@ namespace Game15
             Console.WriteLine("Congratulations! You won the game in {0} moves.", moves);
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
-            najDobrite.Add(moves, name);
+            bestResults.Add(moves, name);
         }
 
-        private static bool proverkaGameFieldIsSolved()
+        private static bool IsGameFieldSolved()
         {
-            int[,] matrica =
+            int[,] matrix =
             {
-                {1,2,3,4},
-                {5,6,7,8},
-                {9,10,11,12},
-                {13,14,15,0}
+                { 1, 2, 3, 4 },
+                { 5, 6, 7, 8 },
+                { 9, 10, 11, 12 },
+                { 13, 14, 15, 0 }
             };
-            bool a = true;
-            for (int i = 0; i < pole.GetLength(0); i++)
+            for (int row = 0; row < field.GetLength(0); row++)
             {
-                for (int j = 0; j < pole.GetLength(1); j++)
+                for (int col = 0; col < field.GetLength(1); col++)
                 {
-                    if (pole[i,j]!=matrica[i,j])
+                    if (field[row, col] != matrix[row, col])
                     {
-                        a = false;
-                        break;
+                        return false;
                     }
                 }
             }
-            return a;
+
+            return true;
         }
 
         private static void PrintBestOfTheBest()
         {
-            if (najDobrite.Count==0)
+            if (bestResults.Count == 0)
             {
                 Console.WriteLine("Scoreboard is empty.");
             }
+
             int counter = 1;
-            foreach (var item in najDobrite)
+            foreach (var item in bestResults)
             {
                 Console.WriteLine("{0}. {1} --> {2} moves", counter, item.Value, item.Key);
                 counter++;
@@ -160,20 +164,23 @@ namespace Game15
         private static void PrintGameField()
         {
             Console.WriteLine(" -------------------");
-            for (int i = 0; i < pole.GetLength(0); i++)
+            for (int i = 0; i < field.GetLength(0); i++)
             {
                 Console.Write("|");
-                for (int j = 0; j < pole.GetLength(1); j++)
+                for (int j = 0; j < field.GetLength(1); j++)
                 {
-                    if (pole[i,j]==0)
+                    if (field[i, j] == 0)
                     {
                         Console.Write("    |");
                         continue;
                     }
-                    Console.Write(" {0,2} |",pole[i,j]);
+
+                    Console.Write(" {0,2} |", field[i, j]);
                 }
+
                 Console.WriteLine();
             }
+
             Console.WriteLine(" -------------------");
         }
     }

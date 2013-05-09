@@ -5,36 +5,67 @@ using System.Text;
 
 namespace Game15
 {
-    class koordinati
+    public class Coordinates
     {
         private int row;
         private int col;
 
+        public Coordinates(int row, int col)
+        {
+            this.Row = row;
+            this.Col = col;
+        }
+
         public int Row
         {
-            get { return row; }
-            set { row=value; }
+            get 
+            { 
+                return this.row;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "Row value cannot be negative.");
+                }
+
+                this.row = value;
+            }
         }
 
         public int Col
         {
-            get { return col; }
-            set { col = value; }
+            get
+            {
+                return this.col;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "Row value cannot be negative.");
+                }
+
+                this.col = value; 
+            }
         }
 
-        public koordinati(int row, int col)
+        public bool CheckNeighbour(Coordinates other)
         {
-            this.row = row;
-            this.col = col;
-        }
+            if (other == null)
+            {
+                throw new ArgumentNullException("Other elemntt cannot be null.");
+            }
 
-        public bool ProverkaNeighbout(koordinati other)
-        {
-            if (row==other.row && (col==other.col+1||col==other.col-1))
+            if (row == other.row && (col == other.col + 1 || col == other.col - 1))
             {
                 return true;
             }
-            if ((row==other.row+1||row==other.row-1) && col==other.col)
+            if ((row == other.row + 1 || row == other.row - 1) && col == other.col)
             {
                 return true;
             }

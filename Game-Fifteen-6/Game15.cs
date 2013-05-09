@@ -10,7 +10,7 @@ namespace Game15
     {
         static int[,] pole = new int[4, 4];
         static OrderedMultiDictionary<int, string> najDobrite = new OrderedMultiDictionary<int, string>(true);
-        static Dictionary<int, koordinati> numberPositions = new Dictionary<int, koordinati>();
+        static Dictionary<int, Coordinates> numberPositions = new Dictionary<int, Coordinates>();
 
         static void Main()
         {
@@ -39,7 +39,7 @@ namespace Game15
                 {
                     int position = rand.Next(0, numbers.Count);
                     pole[i, j] = numbers[position];
-                    numberPositions.Add(numbers[position], new koordinati(i, j));
+                    numberPositions.Add(numbers[position], new Coordinates(i, j));
                     numbers.RemoveAt(position);
                 }
             }
@@ -97,9 +97,9 @@ namespace Game15
 
         private static void TryToMoveNumber(int numberToMove)
         {
-            if (numberPositions[0].ProverkaNeighbout(numberPositions[numberToMove]))
+            if (numberPositions[0].CheckNeighbour(numberPositions[numberToMove]))
             {
-                koordinati temp = numberPositions[0];
+                Coordinates temp = numberPositions[0];
                 numberPositions[0] = numberPositions[numberToMove];
                 numberPositions[numberToMove] = temp;
                 pole[numberPositions[numberToMove].Row, numberPositions[numberToMove].Col] = numberToMove;

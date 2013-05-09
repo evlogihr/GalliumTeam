@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="koordinati.cs" />
+    <Compile Include="Coordinates.cs" />
     <Compile Include="Game15.cs" />
   </ItemGroup>
   <ItemGroup>

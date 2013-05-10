@@ -7,9 +7,9 @@
 
     public class Game15
     {
-        private static int[,] field = new int[4, 4];
-        private static OrderedMultiDictionary<int, string> bestResults = new OrderedMultiDictionary<int, string>(true);
-        private static Dictionary<int, Coordinates> numberPositions = new Dictionary<int, Coordinates>();
+        private static readonly int[,] field = new int[4, 4];
+        private static readonly OrderedMultiDictionary<int, string> bestResults = new OrderedMultiDictionary<int, string>(true);
+        private static readonly Dictionary<int, Coordinates> numberPositions = new Dictionary<int, Coordinates>();
 
         public static void Main()
         {

@@ -49,6 +49,7 @@
     <Compile Include="Coordinates.cs" />
     <Compile Include="Game15.cs" />
     <Compile Include="GameField.cs" />
+    <Compile Include="ScoreBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

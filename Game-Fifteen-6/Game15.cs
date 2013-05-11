@@ -7,7 +7,7 @@
 
     public class Game15
     {
-        private static readonly OrderedMultiDictionary<int, string> bestResults = new OrderedMultiDictionary<int, string>(true);
+        
 
         public static void Main()
         {
@@ -40,7 +40,7 @@
                 switch (input)
                 {
                     case "top":
-                        PrintBestOfTheBest();
+                        ScoreBoard.PrintTopPlayers();
                         break;
                     case "restart":
                         Initialize();
@@ -70,36 +70,13 @@
                 gameIsFinished = GameField.IsSolved();
                 if (gameIsFinished)
                 {
-                    AddToScoreBoard(moves);
+                    ScoreBoard.Add(moves);
                     moves = 0;
                     Initialize();
                 }
 
                 Console.Write("Enter a number to move: ");
                 input = Console.ReadLine();
-            }
-        }
-
-        private static void AddToScoreBoard(int moves)
-        {
-            Console.WriteLine("Congratulations! You won the game in {0} moves.", moves);
-            Console.Write("Please enter your name for the top scoreboard: ");
-            string name = Console.ReadLine();
-            bestResults.Add(moves, name);
-        }
-
-        private static void PrintBestOfTheBest()
-        {
-            if (bestResults.Count == 0)
-            {
-                Console.WriteLine("Scoreboard is empty.");
-            }
-
-            int counter = 1;
-            foreach (var item in bestResults)
-            {
-                Console.WriteLine("{0}. {1} --> {2} moves", counter, item.Value, item.Key);
-                counter++;
             }
         }
     }

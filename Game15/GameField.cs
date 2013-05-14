@@ -6,35 +6,45 @@
 
     public static class GameField
     {
+        /// <summary>
+        /// Stores the current GameField
+        /// </summary>
         private static readonly int[,] Field = new int[4, 4];
-        private static readonly Dictionary<int, Coordinates> NumberPositions = new Dictionary<int, Coordinates>();
-        
+
+        /// <summary>
+        /// A dictionary that stores all the numbers and their coordinates
+        /// </summary>
+        private static readonly Dictionary<int, Coordinates> NumbersAndPositions = new Dictionary<int, Coordinates>();
+
+        /// <summary>
+        /// Generate a random Field
+        /// </summary>
         public static void RandomField()
         {
             List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-            NumberPositions.Clear();
+            NumbersAndPositions.Clear();
             Random rand = new Random();
-            for (int i = 0; i < GameField.Field.GetLength(0); i++)
+            for (int row = 0; row < Field.GetLength(0); row++)
             {
-                for (int j = 0; j < GameField.Field.GetLength(1); j++)
+                for (int col = 0; col < Field.GetLength(1); col++)
                 {
-                    int position = rand.Next(0, numbers.Count);
-                    GameField.Field[i, j] = numbers[position];
-                    NumberPositions.Add(numbers[position], new Coordinates(i, j));
-                    numbers.RemoveAt(position);
+                    int currentNumber = rand.Next(0, numbers.Count); // take a random number from the List of numbers
+                    Field[row, col] = numbers[currentNumber]; // place the selected number in the current row and col
+                    NumbersAndPositions.Add(numbers[currentNumber], new Coordinates(row, col)); // update the dictionary
+                    numbers.RemoveAt(currentNumber); // remove it from the number from the List so it is not used again
                 }
             }
         }
 
-        public static void TryToMoveNumber(int numberToMove)
+        public static void TryToMoveNumber(int numberToMove) // TODO: refactor it to not print anything on the console, istead return bool
         {
-            if (NumberPositions[0].CheckNeighbour(NumberPositions[numberToMove]))
+            if (NumbersAndPositions[0].CheckNeighbour(NumbersAndPositions[numberToMove]))
             {
-                Coordinates temp = NumberPositions[0];
-                NumberPositions[0] = NumberPositions[numberToMove];
-                NumberPositions[numberToMove] = temp;
-                Field[NumberPositions[numberToMove].Row, NumberPositions[numberToMove].Col] = numberToMove;
-                Field[NumberPositions[0].Row, NumberPositions[0].Col] = 0;
+                Coordinates temp = NumbersAndPositions[0];
+                NumbersAndPositions[0] = NumbersAndPositions[numberToMove];
+                NumbersAndPositions[numberToMove] = temp;
+                Field[NumbersAndPositions[numberToMove].Row, NumbersAndPositions[numberToMove].Col] = numberToMove;
+                Field[NumbersAndPositions[0].Row, NumbersAndPositions[0].Col] = 0;
             }
             else
             {
@@ -42,9 +52,14 @@
             }
         }
 
+        /// <summary>
+        /// Check if the current field is solved
+        /// </summary>
+        /// <returns>true or false</returns>
         public static bool IsSolved()
         {
-            int[,] matrix =
+            bool isSolved = true;
+            int[,] solvedField =
             {
                 { 1, 2, 3, 4 },
                 { 5, 6, 7, 8 },
@@ -55,31 +70,34 @@
             {
                 for (int col = 0; col < Field.GetLength(1); col++)
                 {
-                    if (Field[row, col] != matrix[row, col])
+                    if (Field[row, col] != solvedField[row, col])
                     {
-                        return false;
+                        isSolved = false;
                     }
                 }
             }
 
-            return true;
+            return isSolved;
         }
 
-        public static void Print()
+        /// <summary>
+        /// Prints the current GameField on the Console
+        /// </summary>
+        public static void PrintToConsole()
         {
             Console.WriteLine(" -------------------");
-            for (int i = 0; i < Field.GetLength(0); i++)
+            for (int row = 0; row < Field.GetLength(0); row++)
             {
                 Console.Write("|");
-                for (int j = 0; j < Field.GetLength(1); j++)
+                for (int col = 0; col < Field.GetLength(1); col++)
                 {
-                    if (Field[i, j] == 0)
+                    if (Field[row, col] == 0)
                     {
                         Console.Write("    |");
                         continue;
                     }
 
-                    Console.Write(" {0,2} |", Field[i, j]);
+                    Console.Write(" {0,2} |", Field[row, col]);
                 }
 
                 Console.WriteLine();

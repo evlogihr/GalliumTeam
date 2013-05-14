@@ -31,7 +31,7 @@
             int moves = 0;
             do
             {
-                GameField.Print();
+                GameField.PrintToConsole();
                 Console.Write("Enter a number to move: ");
                 ReadCommand(out isGameInProgress);
                 moves++;

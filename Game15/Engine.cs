@@ -14,7 +14,7 @@
         public static void Initialize()
         {
             GameField.RandomField();
-            Comunicator.DisplayIntroMessage();
+            Communicator.DisplayIntroMessage();
         }
 
         /// <summary>
@@ -26,16 +26,13 @@
             int moves = 0;
             do
             {
-
-
                 GameField.PrintToConsole();
-                Comunicator.DisplayMessage("Enter number to move");
                 ReadCommand(out isGameInProgress);
                 moves++;
                 if (GameField.IsSolved())
                 {
-                    string name = Comunicator.GetName();
-                    ScoreBoard.Add(moves,name);
+                    string name = Communicator.GetName();
+                    ScoreBoard.Add(moves, name);
                     moves = 0;
                     Initialize();
                 }
@@ -51,12 +48,12 @@
         private static void ReadCommand(out bool isGameInProgress)
         {
             isGameInProgress = true;
-            string command = Comunicator.GetNumber();
+            string command = Communicator.GetNumber();
             switch (command)
             {
                 case "top":
                     string topPlayers = ScoreBoard.GetTopPlayers();
-                    Comunicator.DisplayMessage(topPlayers);
+                    Communicator.DisplayMessage(topPlayers);
                     break;
                 case "restart":
                     Initialize();

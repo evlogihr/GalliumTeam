@@ -7,8 +7,8 @@
     {
         public static void Main()
         {
-            GameManeger.Initialize();
-            GameManeger.StartGame();
+            Engine.Initialize();
+            Engine.Run();
         }
     }
 }

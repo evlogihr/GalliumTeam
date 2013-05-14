@@ -6,7 +6,7 @@
     /// <summary>
     /// Controller class, serves as a game engine
     /// </summary>
-    public static class GameManeger
+    public class Engine
     {
         /// <summary>
         /// Initializes a game at program start or when user inputs "restart"
@@ -20,7 +20,7 @@
         /// <summary>
         /// Reads the user's commands from the Console and updates the GameField
         /// </summary>
-        public static void StartGame()
+        public static void Run()
         {
             bool isGameInProgress = true;
             int moves = 0;

@@ -54,9 +54,9 @@
 
         public bool CheckNeighbour(Coordinates other)
         {
-            if(this.row == other.row && this.col == other.col) 
+            if (this.row == other.row && this.col == other.col)
             {
-                throw new ArgumentException("Points cannot dublicate.");  
+                throw new ArgumentException("Points cannot dublicate.");
             }
 
             bool checkLeft = this.Row == other.Row && this.Col == other.Col - 1;

@@ -14,53 +14,57 @@
 
         public static void StartGame()
         {
-            GameField.Print();
-            Console.Write("Enter a number to move: ");
-            string input = Console.ReadLine();
+            bool isGameInProgress = true;
             int moves = 0;
-            while (input != "exit")
+            do
             {
-                moves++;
-                switch (input)
-                {
-                    case "top":
-                        //PrintBestOfTheBest();
-                        break;
-                    case "restart":
-                        Initialize();
-                        break;
-                    default:
-                        int numberToMove;
-                        if (int.TryParse(input, out numberToMove))
-                        {
-                            if (0 < numberToMove && numberToMove < 16)
-                            {
-                                GameField.TryToMoveNumber(numberToMove);
-                            }
-                            else
-                            {
-                                Console.WriteLine("Illegal command!");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Illegal command!");
-                        }
-
-                        break;
-                }
-
                 GameField.Print();
-
+                Console.Write("Enter a number to move: ");
+                ReadCommand(out isGameInProgress);
+                moves++;
                 if (GameField.IsSolved())
                 {
-                    //AddToScoreBoard(moves);
+                    ScoreBoard.Add(moves);
                     moves = 0;
                     Initialize();
                 }
+            }
+            while (isGameInProgress);
+        }
 
-                Console.Write("Enter a number to move: ");
-                input = Console.ReadLine();
+        private static void ReadCommand(out bool isGameInProgress)
+        {
+            isGameInProgress = true;
+            string command = Console.ReadLine();
+            switch (command)
+            {
+                case "top":
+                    ScoreBoard.PrintTopPlayers();
+                    break;
+                case "restart":
+                    Initialize();
+                    break;
+                case "exit":
+                    isGameInProgress = false;
+                    break;
+                default:
+                    int numberToMove;
+                    bool isValidNumber = false;
+                    if (int.TryParse(command, out numberToMove))
+                    {
+                        isValidNumber = 0 < numberToMove && numberToMove < 16;
+                    }
+
+                    if (isValidNumber)
+                    {
+                        GameField.TryToMoveNumber(numberToMove);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Illegal command!");
+                    }
+
+                    break;
             }
         }
     }

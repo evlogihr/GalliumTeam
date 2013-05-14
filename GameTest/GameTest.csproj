@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Game-Fifteen-6\Telerik.csproj">
-      <Project>{7c3aae3f-4dd4-482c-849f-6091b0992b02}</Project>
-      <Name>Telerik</Name>
+    <ProjectReference Include="..\Game15\Game15.csproj">
+      <Project>{801f9b71-7ba5-4574-9a93-0950404f591c}</Project>
+      <Name>Game15</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

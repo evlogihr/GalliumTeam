@@ -3,15 +3,28 @@
     using System;
     using System.Linq;
 
+    /// <summary>
+    /// Controller class, serves as a game engine
+    /// </summary>
     public static class GameManeger
     {
+        /// <summary>
+        /// Initializes a game at program start or when user inputs "restart"
+        /// </summary>
         public static void Initialize()
         {
             GameField.RandomField();
-            Console.WriteLine("Welcome to the game “15”. Please try to arrange the numbers sequentially." +
-                "Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
+            Console.WriteLine("Welcome to the game “15”." +
+                "\nPlease try to arrange the numbers sequentially." +
+                "\nCommands:" +
+                "\n - 'top' - view the top scoreboard" +
+                "\n - 'restart' - start a new game" +
+                "\n - 'exit' - quit the game");
         }
 
+        /// <summary>
+        /// Reads the user's commands from the Console and updates the GameField
+        /// </summary>
         public static void StartGame()
         {
             bool isGameInProgress = true;
@@ -32,6 +45,11 @@
             while (isGameInProgress);
         }
 
+        /// <summary>
+        /// Reads the user's input from the Console and in case it is "exit"
+        /// changes the isGameInProgress to false
+        /// </summary>
+        /// <param name="isGameInProgress">when false will end the game</param>
         private static void ReadCommand(out bool isGameInProgress)
         {
             isGameInProgress = true;

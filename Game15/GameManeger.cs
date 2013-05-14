@@ -26,6 +26,7 @@
             int moves = 0;
             do
             {
+
                 GameField.PrintToConsole();
                 Comunicator.DisplayMessage("Enter number to move");
                 ReadCommand(out isGameInProgress);

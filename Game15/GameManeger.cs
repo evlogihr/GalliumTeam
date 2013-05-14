@@ -14,12 +14,7 @@
         public static void Initialize()
         {
             GameField.RandomField();
-            Console.WriteLine("Welcome to the game “15”." +
-                "\nPlease try to arrange the numbers sequentially." +
-                "\nCommands:" +
-                "\n - 'top' - view the top scoreboard" +
-                "\n - 'restart' - start a new game" +
-                "\n - 'exit' - quit the game");
+            Comunicator.DisplayIntroMessage();
         }
 
         /// <summary>
@@ -32,12 +27,13 @@
             do
             {
                 GameField.PrintToConsole();
-                Console.Write("Enter a number to move: ");
+                Comunicator.DisplayMessage("Enter number to move");
                 ReadCommand(out isGameInProgress);
                 moves++;
                 if (GameField.IsSolved())
                 {
-                    ScoreBoard.Add(moves);
+                    string name = Comunicator.GetName();
+                    ScoreBoard.Add(moves,name);
                     moves = 0;
                     Initialize();
                 }
@@ -53,11 +49,12 @@
         private static void ReadCommand(out bool isGameInProgress)
         {
             isGameInProgress = true;
-            string command = Console.ReadLine();
+            string command = Comunicator.GetNumber();
             switch (command)
             {
                 case "top":
-                    ScoreBoard.PrintTopPlayers();
+                    string topPlayers = ScoreBoard.GetTopPlayers();
+                    Comunicator.DisplayMessage(topPlayers);
                     break;
                 case "restart":
                     Initialize();

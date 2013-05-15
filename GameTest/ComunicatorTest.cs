@@ -16,26 +16,37 @@ namespace GameTest
 
                 Console.SetOut(sw);
 
-
-
-                using (StringReader sr = new StringReader(string.Format("6{0}", Environment.NewLine)))
+                using (StringReader sr = new StringReader(string.Format("5{0}", Environment.NewLine)))
                 {
                     
                     Console.SetIn(sr);
 
                     string result = Communicator.GetNumber();
 
+                    string expected = "5";
 
-
-
-
-                    string expected = "5";//string.Format("Enter a number to move: {0}", Environment.NewLine);
-
-                    Assert.AreEqual<string>(expected, result, "expected {0}", expected);
-
+                    Assert.AreEqual<string>(expected, result);
                 }
-
             }
         }
+
+        [TestMethod]
+        public void TestDisplayMessage()
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+
+                string message = "Test message";
+                Communicator.DisplayMessage(message);
+
+                string expected = string.Format("Test message{0}", Environment.NewLine);
+
+                Assert.AreEqual<string>(expected, sw.ToString());
+            }
+        }
+
     }
+
+
 }

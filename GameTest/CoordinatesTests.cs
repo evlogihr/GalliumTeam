@@ -5,7 +5,7 @@
     using Game15;
 
     [TestClass]
-    public class CoordinatesTest
+    public class CoordinatesTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Row value cannot be negative.")]

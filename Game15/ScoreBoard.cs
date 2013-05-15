@@ -14,6 +14,15 @@
             bestResults.Add(moves, name);
         }
 
+        public static OrderedMultiDictionary<int, string> GetScoreBoard()
+        {
+            OrderedMultiDictionary<int, string> collectionCopy = new OrderedMultiDictionary<int, string>(true);
+
+            collectionCopy = ScoreBoard.bestResults.CloneContents();
+
+            return collectionCopy;
+        }
+
         public static string GetTopPlayers()
         {
             var sb = new StringBuilder();

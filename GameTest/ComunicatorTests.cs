@@ -76,12 +76,12 @@ namespace GameTest
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Welcome to the game “15”.");
-                sb.Append("\nPlease try to arrange the numbers sequentially.");
-                sb.Append("\nCommands:");
-                sb.Append("\n - 'top' - view the top scoreboard");
-                sb.Append("\n - 'restart' - start a new game");
-                sb.Append("\n - 'exit' - quit the game");
-                sb.Append("\n");
+                sb.Append(Environment.NewLine + "Please try to arrange the numbers sequentially.");
+                sb.Append(Environment.NewLine + "Commands:");
+                sb.Append(Environment.NewLine + " - 'top' - view the top scoreboard");
+                sb.Append(Environment.NewLine + " - 'restart' - start a new game");
+                sb.Append(Environment.NewLine + " - 'exit' - quit the game");
+                sb.Append(Environment.NewLine);
 
                 string expected = sb.ToString();
 

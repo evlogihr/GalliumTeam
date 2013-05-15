@@ -1,39 +1,63 @@
 ﻿namespace Game15
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using Wintellect.PowerCollections;
 
     public static class ScoreBoard
     {
-        private static readonly OrderedMultiDictionary<int, string> bestResults = new OrderedMultiDictionary<int, string>(true);
+        private static IList<IPlayer> players = new List<IPlayer>();
 
-        public static void Add(int moves,string name)
+        public static IList<IPlayer> Players
         {
-            bestResults.Add(moves, name);
+            get
+            {
+                return players;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("The value for 'Scores' can not be 'null'.");
+                }
+
+                players = value;
+            }
         }
 
-        public static OrderedMultiDictionary<int, string> GetScoreBoard()
+        public static void Add(int score,string name)
         {
-            OrderedMultiDictionary<int, string> collectionCopy = new OrderedMultiDictionary<int, string>(true);
+            IPlayer newPlayer = new Player(name, score);
 
-            collectionCopy = ScoreBoard.bestResults.CloneContents();
+            Players.Add(newPlayer);
 
-            return collectionCopy;
+            Players = Players.OrderBy(x => x.Score).ToList();
+
+            if (Players.Count > 5)
+            {
+                Players.RemoveAt(Players.Count - 1);
+            }
+        }
+
+
+        public static IList<IPlayer> GetScoreBoard()
+        {
+            return Players;
         }
 
         public static string GetTopPlayers()
         {
             var sb = new StringBuilder();
 
-            if (bestResults.Count != 0)
+            if (Players.Count != 0)
             {
                 int counter = 1;
                 sb.AppendLine("--------------------");
-                foreach (var item in bestResults)
+                foreach (var player in Players)
                 {
-                    sb.AppendFormat("{0}. {1} --> {2} moves\n", counter, item.Value, item.Key);
+                    sb.AppendFormat("{0}. {1}", counter, player.ToString());
                     counter++;
                 }
                 sb.Append("--------------------");

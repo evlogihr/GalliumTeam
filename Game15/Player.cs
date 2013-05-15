@@ -54,8 +54,8 @@ namespace Game15
         {
             StringBuilder result = new StringBuilder();
 
-            result.AppendFormat("{0}. {1} --> {2} score\n",this.Name,this.Score);
-
+            result.AppendFormat("{0} --> {1} moves", this.Name, this.Score);
+            result.AppendLine();
             return result.ToString();
         }
     }

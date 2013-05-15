@@ -28,33 +28,31 @@ namespace GameTest
             ScoreBoard.Add(10, "Pesho");
             ScoreBoard.Add(20, "Mimi");
 
-            var players = ScoreBoard.GetPlayers();
+            var players = ScoreBoard.Players;
 
             Assert.AreEqual(players.Count, 2);
         }
 
-        //[TestMethod]
-        //public void GetTopPlayersTest()
-        //{
-        //    ScoreBoard.Add(10, "Pesho");
-        //    ScoreBoard.Add(10, "Mimi");
+        [TestMethod]
+        public void GetTopPlayersTest()
+        {
+            ScoreBoard.Add(10, "Pesho");
+            ScoreBoard.Add(10, "Mimi");
 
-        //    StringBuilder sb = new StringBuilder();
-        //    int counter = 1;
-        //    sb.AppendLine("--------------------");
-        //    foreach (var item in testScore)
-        //    {
-        //        sb.AppendFormat("{0}. {1} --> {2} moves\n", counter, item.Value, item.Key);
-        //        counter++;
-        //    }
-        //    sb.Append("--------------------");
+            StringBuilder sb = new StringBuilder();
+            int counter = 1;
+            sb.AppendLine("--------------------");
+            foreach (var player in ScoreBoard.Players)
+            {
+                sb.AppendFormat("{0}. {1} --> {2} moves", counter, player.Name, player.Score);
+                sb.AppendLine();
+                counter++;
+            }
+            sb.Append("--------------------");
+            
+            string consoleOutput = ScoreBoard.GetTopPlayers();
 
-        //    ScoreBoard.Add(10, "Pesho");
-        //    ScoreBoard.Add(20, "Mimi");
-
-        //    string consoleOutput = ScoreBoard.GetTopPlayers();
-
-        //    Assert.AreEqual<string>(sb.ToString(), consoleOutput);
-        //}
+            Assert.AreEqual<string>(sb.ToString(), consoleOutput);
+        }
     }
 }

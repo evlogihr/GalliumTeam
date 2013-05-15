@@ -59,10 +59,10 @@
                 throw new ArgumentException("Points cannot dublicate.");
             }
 
-            bool checkLeft = this.Row == other.Row && this.Col == other.Col - 1;
-            bool checkRight = this.Row == other.Row && this.Col == other.Col + 1;
-            bool checkTop = this.Row == other.Row - 1 && this.Col == other.Col;
-            bool checkBottom = this.Row == other.Row + 1 && this.Col == other.Col;
+            bool checkLeft = CheckLeft(other);
+            bool checkRight = CheckRight(other);
+            bool checkTop = CheckTop(other);
+            bool checkBottom = CheckBottom(other);
 
             if (checkLeft || checkRight || checkTop || checkBottom)
             {
@@ -70,6 +70,30 @@
             }
 
             return false;
+        }
+  
+        private bool CheckBottom(Coordinates other)
+        {
+            bool checkBottom = this.Row == other.Row + 1 && this.Col == other.Col;
+            return checkBottom;
+        }
+  
+        private bool CheckTop(Coordinates other)
+        {
+            bool checkTop = this.Row == other.Row - 1 && this.Col == other.Col;
+            return checkTop;
+        }
+  
+        private bool CheckRight(Coordinates other)
+        {
+            bool checkRight = this.Row == other.Row && this.Col == other.Col + 1;
+            return checkRight;
+        }
+  
+        private bool CheckLeft(Coordinates other)
+        {
+            bool checkLeft = this.Row == other.Row && this.Col == other.Col - 1;
+            return checkLeft;
         }
     }
 }

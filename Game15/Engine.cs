@@ -26,7 +26,7 @@
             int moves = 0;
             do
             {
-                GameField.PrintToConsole();
+                Console.WriteLine(GameField.ToString());
                 ReadCommand(out isGameInProgress);
                 moves++;
                 if (GameField.IsSolved())

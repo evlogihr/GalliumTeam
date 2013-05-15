@@ -84,27 +84,29 @@
         /// <summary>
         /// Prints the current GameField on the Console
         /// </summary>
-        public static void PrintToConsole()
+        public static string ToString()
         {
-            Console.WriteLine(" -------------------");
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(" -------------------");
             for (int row = 0; row < Field.GetLength(0); row++)
             {
-                Console.Write("|");
+                result.Append("|");
                 for (int col = 0; col < Field.GetLength(1); col++)
                 {
                     if (Field[row, col] == 0)
                     {
-                        Console.Write("    |");
+                        result.Append("    |");
                         continue;
                     }
 
-                    Console.Write(" {0,2} |", Field[row, col]);
+                    result.Append(string.Format(" {0,2} |", Field[row, col]));
                 }
 
-                Console.WriteLine();
+                result.AppendLine();
             }
 
-            Console.WriteLine(" -------------------");
+            result.Append(" -------------------");
+            return result.ToString();
         }
     }
 }

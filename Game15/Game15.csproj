@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PowerCollections">
-      <HintPath>..\Game-Fifteen-6\bin\Debug\PowerCollections.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\Visual Studio 2012\Projects\CodeRefactoring\Events\PowerCollections\PowerCollections\Binaries\PowerCollections.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

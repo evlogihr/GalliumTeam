@@ -42,11 +42,11 @@
         public static void DisplayIntroMessage()
         {
             Console.WriteLine("Welcome to the game “15”." +
-                "\nPlease try to arrange the numbers sequentially." +
-                "\nCommands:" +
-                "\n - 'top' - view the top scoreboard" +
-                "\n - 'restart' - start a new game" +
-                "\n - 'exit' - quit the game");
+                Environment.NewLine + "Please try to arrange the numbers sequentially." +
+                Environment.NewLine + "Commands:" +
+                Environment.NewLine + " - 'top' - view the top scoreboard" +
+                Environment.NewLine + " - 'restart' - start a new game" +
+                Environment.NewLine + " - 'exit' - quit the game");
         }
     }
 }

@@ -8,9 +8,19 @@
     public class GameField
     {
         /// <summary>
+        /// Game field width
+        /// </summary>
+        private const int FIELD_WIDTH = 4;
+
+        /// <summary>
+        /// Game field height
+        /// </summary>
+        private const int FIELD_HEIGHT = 4;
+
+        /// <summary>
         /// Stores the current GameField
         /// </summary>
-        private static readonly int[,] field = new int[4, 4];
+        private static readonly int[,] field = new int[FIELD_WIDTH, FIELD_HEIGHT];
 
         /// <summary>
         /// A dictionary that stores all the numbers and their coordinates

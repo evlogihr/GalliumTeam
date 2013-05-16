@@ -29,16 +29,15 @@
             FieldInfo changedField = typeof(GameField).GetField("field", BindingFlags.Static | BindingFlags.NonPublic);
             changedField.SetValue(null, testMatrix);
             FieldInfo changedDict = typeof(GameField).GetField("NumbersAndPositions", BindingFlags.Static | BindingFlags.NonPublic);
-
             Coordinates testCooridates = new Coordinates(0, 1);
             Dictionary<int, Coordinates> testDict = new Dictionary<int, Coordinates>();
             testDict.Add(1, testCooridates);
             testCooridates = new Coordinates(0, 0);
             testDict.Add(0, testCooridates);
-
             changedDict.SetValue(null, testDict);
 
             bool result = GameField.CanMoveNumber(1);
+
             Assert.IsTrue(result);
         }
 
@@ -46,16 +45,15 @@
         public void TestCanMoveNumberFalse()
         {
             FieldInfo changedDict = typeof(GameField).GetField("NumbersAndPositions", BindingFlags.Static | BindingFlags.NonPublic);
-
             Coordinates testCooridates = new Coordinates(0, 1);
             Dictionary<int, Coordinates> testDict = new Dictionary<int, Coordinates>();
             testDict.Add(1, testCooridates);
             testCooridates = new Coordinates(1, 0);
             testDict.Add(0, testCooridates);
-
             changedDict.SetValue(null, testDict);
 
             bool result = GameField.CanMoveNumber(1);
+
             Assert.IsFalse(result);
         }
 
@@ -77,7 +75,6 @@
 
             FieldInfo changedField = typeof(GameField).GetField("field", BindingFlags.Static | BindingFlags.NonPublic);
             changedField.SetValue(null, testMatrix);
-
             FieldInfo changedDict = typeof(GameField).GetField("NumbersAndPositions", BindingFlags.Static | BindingFlags.NonPublic);
             Coordinates testCooridates = new Coordinates(0, 1);
             Dictionary<int, Coordinates> testDict = new Dictionary<int, Coordinates>();
@@ -85,7 +82,6 @@
             testCooridates = new Coordinates(0, 0);
             testDict.Add(0, testCooridates);
             changedDict.SetValue(null, testDict);
-
             GameField.MoveNumber(1);
 
             int[,] check = (int[,])changedField.GetValue(null);

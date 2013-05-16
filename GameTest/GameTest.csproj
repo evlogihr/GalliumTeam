@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CoordinatesTests.cs" />
     <Compile Include="GameFieldTests.cs" />
+    <Compile Include="PlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComunicatorTests.cs" />
     <Compile Include="ScoreBoardTests.cs" />

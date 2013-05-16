@@ -7,7 +7,6 @@
     using Game15;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-
     [TestClass]
     public class GameFieldTests
     {

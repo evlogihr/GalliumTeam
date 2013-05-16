@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Game15;
-
-namespace GameTest
+﻿namespace GameTest
 {
+    using System;
+    using Game15;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class GameFieldTests
     {
@@ -15,7 +15,7 @@ namespace GameTest
             GameField.RandomField();
             int[,] secondGameField = (int[,])GameField.Field.Clone();
 
-            bool areTheSame = AreMatricesTheSame(firstGameField, secondGameField);
+            bool areTheSame = this.AreMatricesTheSame(firstGameField, secondGameField);
             Assert.IsFalse(areTheSame);
         }
 
@@ -31,6 +31,7 @@ namespace GameTest
                     }
                 }
             }
+
             return true;
         }
     }

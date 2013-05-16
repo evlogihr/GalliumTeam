@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Game15;
-using System.IO;
-using System.Text;
-
-namespace GameTest
+﻿namespace GameTest
 {
+    using System;
+    using System.IO;
+    using System.Text;
+    using Game15;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ComunicatorTests
     {
@@ -50,7 +50,6 @@ namespace GameTest
         {
             using (StringWriter sw = new StringWriter())
             {
-
                 Console.SetOut(sw);
 
                 using (StringReader sr = new StringReader(string.Format("Pesho{0}", Environment.NewLine)))

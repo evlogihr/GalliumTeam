@@ -16,6 +16,7 @@
             {
                 return players;
             }
+
             set
             {
                 if (value == null)
@@ -27,7 +28,7 @@
             }
         }
 
-        public static void Add(int score,string name)
+        public static void Add(int score, string name)
         {
             IPlayer newPlayer = new Player(name, score);
 
@@ -54,6 +55,7 @@
                     sb.AppendFormat("{0}. {1}", counter, player.ToString());
                     counter++;
                 }
+
                 sb.Append("--------------------");
             }
             else

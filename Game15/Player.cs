@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Game15
+﻿namespace Game15
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+
     public class Player : IPlayer
     {
         private string name;
@@ -22,6 +21,7 @@ namespace Game15
             {
                 return this.name;
             }
+
             protected set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -39,6 +39,7 @@ namespace Game15
             {
                 return this.score;
             }
+
             protected set
             {
                 if (value < 0)

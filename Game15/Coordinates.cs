@@ -59,10 +59,10 @@
                 throw new ArgumentException("Points cannot dublicate.");
             }
 
-            bool checkLeft = CheckLeft(other);
-            bool checkRight = CheckRight(other);
-            bool checkTop = CheckTop(other);
-            bool checkBottom = CheckBottom(other);
+            bool checkLeft = this.CheckLeft(other);
+            bool checkRight = this.CheckRight(other);
+            bool checkTop = this.CheckTop(other);
+            bool checkBottom = this.CheckBottom(other);
 
             if (checkLeft || checkRight || checkTop || checkBottom)
             {

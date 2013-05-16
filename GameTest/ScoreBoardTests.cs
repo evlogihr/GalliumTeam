@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Game15;
-using System.Text;
-
-namespace GameTest
+﻿namespace GameTest
 {
+    using System;
+    using System.Text;
+    using Game15;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class ScoreBoardTests
     {
@@ -47,6 +47,7 @@ namespace GameTest
                 sb.AppendLine();
                 counter++;
             }
+
             sb.Append("--------------------");
             
             string consoleOutput = ScoreBoard.GetTopPlayers();

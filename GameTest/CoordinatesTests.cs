@@ -1,8 +1,8 @@
 ﻿namespace GameTest
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Game15;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class CoordinatesTests

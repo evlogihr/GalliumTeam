@@ -74,18 +74,12 @@
                 Communicator.DisplayIntroMessage();
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Welcome to the game “15”.");
-                sb.AppendLine();
-                sb.Append("Please try to arrange the numbers sequentially.");
-                sb.AppendLine();
-                sb.Append("Commands:");
-                sb.AppendLine();
-                sb.Append(" - 'top' - view the top scoreboard");
-                sb.AppendLine();
-                sb.Append(" - 'restart' - start a new game");
-                sb.AppendLine();
-                sb.Append(" - 'exit' - quit the game");
-                sb.AppendLine();
+                sb.AppendLine("Welcome to the game “15”.");
+                sb.AppendLine("Please try to arrange the numbers sequentially.");
+                sb.AppendLine("Commands:");                
+                sb.AppendLine(" - 'top' - view the top scoreboard");              
+                sb.AppendLine(" - 'restart' - start a new game");          
+                sb.AppendLine(" - 'exit' - quit the game");
 
                 string expected = sb.ToString();
 

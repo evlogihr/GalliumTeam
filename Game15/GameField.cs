@@ -10,12 +10,23 @@
         /// <summary>
         /// Stores the current GameField
         /// </summary>
-        private static readonly int[,] Field = new int[4, 4];
+        private static readonly int[,] field = new int[4, 4];
 
         /// <summary>
         /// A dictionary that stores all the numbers and their coordinates
         /// </summary>
         private static readonly Dictionary<int, Coordinates> NumbersAndPositions = new Dictionary<int, Coordinates>();
+
+        /// <summary>
+        /// Gets the current filed
+        /// </summary>
+        public static int[,] Field
+        {
+            get
+            {
+                return field;
+            }
+        }
 
         /// <summary>
         /// Generate a random Field
@@ -37,20 +48,28 @@
             }
         }
 
-        public static void TryToMoveNumber(int numberToMove) // TODO: refactor it to not print anything on the console, istead return bool
+        /// <summary>
+        /// Check if the specified number can move to the empty space in the GameField
+        /// </summary>
+        /// <param name="numberToMove">The number to move</param>
+        /// <returns>True or False</returns>
+        public static bool CanMoveNumber(int numberToMove)
         {
-            if (NumbersAndPositions[0].CheckNeighbour(NumbersAndPositions[numberToMove]))
-            {
-                Coordinates temp = NumbersAndPositions[0];
-                NumbersAndPositions[0] = NumbersAndPositions[numberToMove];
-                NumbersAndPositions[numberToMove] = temp;
-                Field[NumbersAndPositions[numberToMove].Row, NumbersAndPositions[numberToMove].Col] = numberToMove;
-                Field[NumbersAndPositions[0].Row, NumbersAndPositions[0].Col] = 0;
-            }
-            else
-            {
-                Console.WriteLine("Illegal command!");
-            }
+            return NumbersAndPositions[0].CheckNeighbour(NumbersAndPositions[numberToMove]);
+        }
+
+        /// <summary>
+        /// Moves the specified number to the empty space on the GameField
+        /// </summary>
+        /// <param name="numberToMove">The number to move</param>
+        public static void MoveNumber(int numberToMove)
+        {
+            Coordinates temp = NumbersAndPositions[0];
+            NumbersAndPositions[0] = NumbersAndPositions[numberToMove];
+            NumbersAndPositions[numberToMove] = temp;
+
+            Field[NumbersAndPositions[numberToMove].Row, NumbersAndPositions[numberToMove].Col] = numberToMove;
+            Field[NumbersAndPositions[0].Row, NumbersAndPositions[0].Col] = 0;
         }
 
         /// <summary>
@@ -82,8 +101,9 @@
         }
 
         /// <summary>
-        /// Prints the current GameField on the Console
+        /// Returns the current GameField as a string
         /// </summary>
+        /// <returns>String representation of the game field</returns>
         public static string ToString()
         {
             StringBuilder result = new StringBuilder();

@@ -69,9 +69,9 @@
                         isValidNumber = 0 < numberToMove && numberToMove < 16;
                     }
 
-                    if (isValidNumber)
+                    if (isValidNumber && GameField.CanMoveNumber(numberToMove))
                     {
-                        GameField.TryToMoveNumber(numberToMove);
+                        GameField.MoveNumber(numberToMove);
                     }
                     else
                     {

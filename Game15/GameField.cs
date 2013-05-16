@@ -17,6 +17,8 @@
         /// </summary>
         private static readonly Dictionary<int, Coordinates> NumbersAndPositions = new Dictionary<int, Coordinates>();
 
+        private static Random rand = new Random();
+
         /// <summary>
         /// Gets the current filed
         /// </summary>
@@ -35,7 +37,6 @@
         {
             List<int> numbers = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
             NumbersAndPositions.Clear();
-            Random rand = new Random();
             for (int row = 0; row < Field.GetLength(0); row++)
             {
                 for (int col = 0; col < Field.GetLength(1); col++)

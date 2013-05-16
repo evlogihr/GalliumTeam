@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Game15;
-using Wintellect.PowerCollections;
 using System.Text;
 
 namespace GameTest

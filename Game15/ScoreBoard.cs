@@ -41,12 +41,6 @@
             }
         }
 
-
-        public static IList<IPlayer> GetScoreBoard()
-        {
-            return Players;
-        }
-
         public static string GetTopPlayers()
         {
             var sb = new StringBuilder();

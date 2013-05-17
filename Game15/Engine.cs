@@ -8,6 +8,8 @@
     /// </summary>
     public class Engine
     {
+        private static bool isGameInProgress = true;
+
         /// <summary>
         /// Initializes a game at program start or when user inputs "restart"
         /// </summary>
@@ -22,13 +24,14 @@
         /// </summary>
         public static void Run()
         {
-            bool isGameInProgress = true;
             int moves = 0;
             do
             {
                 Console.WriteLine(GameField.ToString());
-                ReadCommand(out isGameInProgress);
+                string command = Communicator.GetNumber();
+                ReadCommand(command);
                 moves++;
+
                 if (GameField.IsSolved())
                 {
                     string name = Communicator.GetName();
@@ -45,20 +48,23 @@
         /// changes the isGameInProgress to false
         /// </summary>
         /// <param name="isGameInProgress">when false will end the game</param>
-        private static void ReadCommand(out bool isGameInProgress)
+        private static void ReadCommand(string command)
         {
             isGameInProgress = true;
-            string command = Communicator.GetNumber();
             switch (command)
             {
                 case "top":
+                    Console.Clear();
+                    Communicator.DisplayIntroMessage();
                     string topPlayers = ScoreBoard.GetTopPlayers();
                     Communicator.DisplayMessage(topPlayers);
                     break;
                 case "restart":
+                    Console.Clear();
                     Initialize();
                     break;
                 case "exit":
+                    Communicator.DisplayMessage("Good Bye!");
                     isGameInProgress = false;
                     break;
                 default:
@@ -69,13 +75,17 @@
                         isValidNumber = 0 < numberToMove && numberToMove < 16;
                     }
 
+                    Console.Clear();
+                    Communicator.DisplayIntroMessage();
                     if (isValidNumber && GameField.CanMoveNumber(numberToMove))
                     {
                         GameField.MoveNumber(numberToMove);
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Illegal command!");
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
 
                     break;

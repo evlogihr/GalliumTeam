@@ -85,7 +85,7 @@
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Illegal command!");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Gray;
                     }
 
                     break;
